@@ -39,6 +39,8 @@ The SDK converts your images to the Pebble 64-colour palette at build time.
 Images do not need to be pre-dithered but dithering before import gives more
 predictable results.
 
+Images used in the AppStore build were dithered in Gimp to achieve the limited color palate and ensure more consistent results.
+
 ## Reducing the number of images
 
 Edit `NUM_BACKGROUNDS` in `src/main.c`, shorten the `s_bg_resource_ids` array
