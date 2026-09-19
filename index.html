@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Random BG Settings</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;
+background:#1a1a1a;color:#f0f0f0;min-height:100vh;display:flex;flex-direction:column;}
+header{background:#000;padding:18px 20px 14px;border-bottom:1px solid #333;}
+header h1{font-size:18px;font-weight:600;color:#fff;}
+header p{font-size:12px;color:#888;margin-top:3px;}
+main{flex:1;padding:20px 16px;max-width:480px;width:100%;margin:0 auto;}
+.lbl{font-size:11px;font-weight:600;text-transform:uppercase;
+letter-spacing:0.08em;color:#888;margin-bottom:8px;padding-left:4px;}
+.card{background:#2a2a2a;border-radius:12px;overflow:hidden;margin-bottom:28px;}
+.toggle{display:flex;}
+.mbtn{flex:1;padding:18px 12px;text-align:center;cursor:pointer;
+border:none;background:transparent;color:#888;font-size:14px;
+font-weight:500;-webkit-tap-highlight-color:transparent;}
+.mbtn:first-child{border-right:1px solid #3a3a3a;}
+.mbtn .ic{display:block;font-size:26px;margin-bottom:6px;}
+.mbtn.on{background:#0a84ff;color:#fff;}
+.row{display:flex;align-items:center;justify-content:space-between;
+padding:16px;border-top:1px solid #333;}
+.rlbl{font-size:14px;color:#f0f0f0;}
+.rlbl small{display:block;font-size:11px;color:#888;margin-top:2px;}
+.badge{background:#0a84ff;color:#fff;font-size:13px;font-weight:700;
+border-radius:8px;padding:4px 10px;min-width:42px;text-align:center;
+flex-shrink:0;margin-left:12px;}
+.srow{padding:0 16px 16px;}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;
+border-radius:2px;background:#444;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;
+width:24px;height:24px;border-radius:50%;background:#0a84ff;
+cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.4);}
+.msec{transition:opacity .2s;}
+.msec.off{opacity:.35;pointer-events:none;}
+.save{display:block;width:100%;padding:16px;background:#0a84ff;
+color:#fff;font-size:16px;font-weight:600;border:none;
+border-radius:12px;cursor:pointer;margin-top:8px;
+-webkit-tap-highlight-color:transparent;}
+.save:active{background:#0070d8;}
+.ver{text-align:center;font-size:11px;color:#555;margin-top:20px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Random BG</h1>
+  <p>Background image settings</p>
+</header>
+
+<main>
+  <p class="lbl">Change image on</p>
+  <div class="card">
+    <div class="toggle">
+      <button class="mbtn" id="bt" onclick="setMode(0)">
+        <span class="ic">&#128336;</span>Time interval
+      </button>
+      <button class="mbtn" id="bf" onclick="setMode(1)">
+        <span class="ic">&#128075;</span>Wrist flick
+      </button>
+    </div>
+    <div class="msec" id="ms">
+      <div class="row">
+        <div class="rlbl">Change every
+          <small>minutes between images</small>
+        </div>
+        <div class="badge" id="mv">5</div>
+      </div>
+      <div class="srow">
+        <input type="range" id="sl" min="1" max="60" step="1" value="5"
+               oninput="upd(this.value)">
+      </div>
+    </div>
+  </div>
+  <button class="save" onclick="save()">Save &amp; close</button>
+  <p class="ver">Random BG v1.0.0</p>
+</main>
+
+<script>
+var mode = 0, mins = 5;
+
+(function init() {
+    var raw = location.search.replace('?s=', '');
+    if (!raw) return;
+    try {
+        var p = JSON.parse(decodeURIComponent(raw));
+        mode = parseInt(p.bgMode,    10) || 0;
+        mins = parseInt(p.bgMinutes, 10) || 5;
+    } catch(e) {}
+    apply();
+})();
+
+function apply() {
+    document.getElementById('bt').className = 'mbtn' + (mode === 0 ? ' on' : '');
+    document.getElementById('bf').className = 'mbtn' + (mode === 1 ? ' on' : '');
+    document.getElementById('ms').className = 'msec' + (mode === 1 ? ' off' : '');
+    document.getElementById('sl').value = mins;
+    document.getElementById('mv').textContent = mins;
+}
+
+function setMode(m) { mode = m; apply(); }
+
+function upd(v) {
+    mins = parseInt(v, 10);
+    document.getElementById('mv').textContent = mins;
+}
+
+function save() {
+    var r = encodeURIComponent(JSON.stringify({
+        bgMode:    String(mode),
+        bgMinutes: String(mins)
+    }));
+    location.href = 'pebblejs://close#' + r;
+}
+</script>
+</body>
+</html>
