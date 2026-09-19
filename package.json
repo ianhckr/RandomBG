@@ -1,0 +1,70 @@
+{
+    "author": "you",
+    "dependencies": {},
+    "keywords": [
+        "pebble-app"
+    ],
+    "name": "random-bg-watchface",
+    "pebble": {
+        "capabilities": [
+            "configurable"
+        ],
+        "displayName": "Random BG",
+        "enableMultiJS": true,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "images/bg_0.png",
+                    "name": "BG_0",
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/bg_1.png",
+                    "name": "BG_1",
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/bg_2.png",
+                    "name": "BG_2",
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/bg_3.png",
+                    "name": "BG_3",
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/bg_4.png",
+                    "name": "BG_4",
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/bg_5.png",
+                    "name": "BG_5",
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/bg_6.png",
+                    "name": "BG_6",
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/bg_7.png",
+                    "name": "BG_7",
+                    "type": "bitmap"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "emery"
+        ],
+        "uuid": "7480b491-f505-40ed-9e79-054b48be37d7",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}

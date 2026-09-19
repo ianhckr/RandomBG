@@ -1,0 +1,32 @@
+{
+  "name": "random-bg",
+  "author": "your-name",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "pebble": {
+    "sdkVersion": "3",
+    "displayName": "Random BG",
+    "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "capabilities": ["configurable"],
+    "watchapp": {
+      "watchface": true
+    },
+    "targetPlatforms": ["diorite"],
+    "appKeys": {
+      "bgMode":    0,
+      "bgMinutes": 1
+    },
+    "resources": {
+      "media": [
+        { "type": "bitmap", "name": "BG_0", "file": "images/bg_0.png" },
+        { "type": "bitmap", "name": "BG_1", "file": "images/bg_1.png" },
+        { "type": "bitmap", "name": "BG_2", "file": "images/bg_2.png" },
+        { "type": "bitmap", "name": "BG_3", "file": "images/bg_3.png" },
+        { "type": "bitmap", "name": "BG_4", "file": "images/bg_4.png" },
+        { "type": "bitmap", "name": "BG_5", "file": "images/bg_5.png" },
+        { "type": "bitmap", "name": "BG_6", "file": "images/bg_6.png" },
+        { "type": "bitmap", "name": "BG_7", "file": "images/bg_7.png" }
+      ]
+    }
+  }
+}
